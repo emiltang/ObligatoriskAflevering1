@@ -9,19 +9,18 @@ public class AtbashCipher extends AbstractCipher {
 
     @Override
     public String encrypt(String original) {
-	char[] chars = original.toCharArray();
-	System.out.println(chars.length -1);
-	for (int i = 0; i < chars.length; i++) {
-	    if (Character.isLetter(chars[i])) {
-		chars[i] = ALPHABETH[(ALPHABETH.length - 1) - findCharIndex(chars[i])];
-	    }
-	}
-	return new String(chars);
+        char[] chars = original.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (Character.isLetter(chars[i])) {
+                chars[i] = ALPHABETH[(ALPHABETH.length - 1) - findCharIndex(chars[i],ALPHABETH)];
+            }
+        }
+        return new String(chars);
     }
 
     @Override
     public String decrypt(String encrypted) {
-	return encrypt(encrypted);
+        return encrypt(encrypted);
     }
 
 }

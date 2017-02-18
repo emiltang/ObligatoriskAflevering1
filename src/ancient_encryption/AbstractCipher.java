@@ -13,13 +13,12 @@ public abstract class AbstractCipher implements CipherInterface {
     @Override
     public abstract String decrypt(String encrypted);
 
-    protected int findCharIndex(char ch) {
-	for (int i = 0; i < ALPHABETH.length; i++) {
-	    if (ch == ALPHABETH[i]) {
-		return i;
-	    }
-	}
-	return -1;
+    protected int findCharIndex(char ch, char[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (ch == array[i]) {
+                return i;
+            }
+        }
+        return -1;
     }
-
 }
