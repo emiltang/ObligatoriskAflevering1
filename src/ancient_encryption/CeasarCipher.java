@@ -25,8 +25,10 @@ public class CeasarCipher extends AbstractCipher {
 	}
 
 	char[] chars = original.toCharArray();
-	for (int i = 0; i < ALPHABETH.length; i++) {
-	    chars[i] = ALPHABETH[findCharIndex(chars[i])];
+	for (int i = 0; i < chars.length; i++) {
+	    if (Character.isLetter(chars[i])) {
+		chars[i] = rotALPHABETH[findCharIndex(chars[i])];
+	    }
 	}
 	return new String(chars);
     }
@@ -35,12 +37,14 @@ public class CeasarCipher extends AbstractCipher {
     public String decrypt(String encrypted) {
 	char[] rotALPHABETH = ALPHABETH.clone();
 	for (int i = 0; i < ALPHABETH.length; i++) {
-	    rotALPHABETH[(i - rotFactor) % ALPHABETH.length] = ALPHABETH[i];
+	    rotALPHABETH[(i + rotFactor) % ALPHABETH.length] = ALPHABETH[i];
 	}
 
 	char[] chars = encrypted.toCharArray();
-	for (int i = 0; i < ALPHABETH.length; i++) {
-	    chars[i] = ALPHABETH[findCharIndex(chars[i])];
+	for (int i = 0; i < chars.length; i++) {
+	    if (Character.isLetter(chars[i])) {
+		chars[i] = rotALPHABETH[findCharIndex(chars[i])];
+	    }
 	}
 	return new String(chars);
     }
