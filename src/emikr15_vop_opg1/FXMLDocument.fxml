@@ -9,6 +9,8 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emikr15_vop_opg1.FXMLDocumentController">
@@ -46,6 +48,27 @@
                </children>
             </VBox>
          </content></Tab>
-    <Tab text="Untitled Tab 2" />
+    <Tab text="Sten saks papir">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="playerIW" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="computerIW" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+                  <ButtonBar>
+                    <buttons>
+                      <Button fx:id="rockBtn" mnemonicParsing="false" onAction="#rockPaperScissor" text="Rock" />
+                        <Button fx:id="scissorsBtn" mnemonicParsing="false" onAction="#rockPaperScissor" text="Scissors" />
+                        <Button fx:id="paperBtn" mnemonicParsing="false" onAction="#rockPaperScissor" text="Paper" />
+                    </buttons>
+                  </ButtonBar>
+                  <Label fx:id="computerLabel" />
+                  <Label fx:id="winLabel" />
+               </children>
+            </VBox>
+         </content></Tab>
   </tabs>
 </TabPane>
