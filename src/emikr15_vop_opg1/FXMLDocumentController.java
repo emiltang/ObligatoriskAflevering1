@@ -25,7 +25,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import jdk.nashorn.internal.parser.TokenType;
 import rock_scissors_paper.RockScissorsPaper;
 import rock_scissors_paper.RockScissorsPaper.Hand;
 
@@ -53,8 +52,6 @@ public class FXMLDocumentController implements Initializable {
     private Button decryptBtn;
     @FXML
     private TextField decryptTF;
-
-    private CipherInterface cipher;
     @FXML
     private ImageView playerIW;
     @FXML
@@ -70,65 +67,59 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label winLabel;
 
+    private CipherInterface cipher;
     private Map<Hand, Image> picMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	picMap.put(Hand.ROCK,
-		new Image(new File("Rock.png").toURI().toString())
-	);
-	picMap.put(Hand.SCISSORS,
-		new Image(new File("Scissors.png").toURI().toString())
-	);
-	picMap.put(Hand.PAPER,
-		new Image(new File("Paper.png").toURI().toString())
-	);
-	rotSpinner.setValueFactory(
-		new SpinnerValueFactory.IntegerSpinnerValueFactory(
-			0,
-			CipherInterface.ALPHABETH.length - 1,
-			CipherInterface.ALPHABETH.length / 2
-		)
-	);
+        picMap.put(Hand.ROCK, new Image(new File("Rock.png").toURI().toString()));
+        picMap.put(Hand.SCISSORS, new Image(new File("Scissors.png").toURI().toString()));
+        picMap.put(Hand.PAPER, new Image(new File("Paper.png").toURI().toString()));
+        
+        rotSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                0,
+                CipherInterface.ALPHABETH.length - 1,
+                CipherInterface.ALPHABETH.length / 2
+        ));
     }
 
     @FXML
     private void encryptText(ActionEvent event) {
-	encryptTF.setText(cipher.encrypt(inputTF.getText()));
+        encryptTF.setText(cipher.encrypt(inputTF.getText()));
     }
 
     @FXML
     private void decryptText(ActionEvent event) {
-	decryptTF.setText(cipher.decrypt(encryptTF.getText()));
+        decryptTF.setText(cipher.decrypt(encryptTF.getText()));
     }
 
     @FXML
     private void selectCipher(ActionEvent event) {
-	if (cipherGroup.getSelectedToggle() == atbshRB) {
-	    cipher = new AtbashCipher();
-	} else if (cipherGroup.getSelectedToggle() == ceasarRB) {
-	    cipher = new CeasarCipher(rotSpinner.getValue());
-	}
+        if (cipherGroup.getSelectedToggle() == atbshRB) {
+            cipher = new AtbashCipher();
+        } else if (cipherGroup.getSelectedToggle() == ceasarRB) {
+            cipher = new CeasarCipher(rotSpinner.getValue());
+        }
     }
 
     @FXML
     private void rockPaperScissor(ActionEvent event) {
-	Hand hand;
-	RockScissorsPaper game = new RockScissorsPaper();
-	if (event.getSource() == rockBtn) {
-	    hand = Hand.ROCK;
-	} else if (event.getSource() == paperBtn) {
-	    hand = Hand.PAPER;
-	} else if (event.getSource() == scissorsBtn) {
-	    hand = Hand.SCISSORS;
-	} else {
-	    hand = null;
-	}
-	game.play(hand);
-	computerLabel.setText("Computer: " + game.getComputerHand());
-	computerIW.setImage(picMap.get(game.getComputerHand()));
-	playerIW.setImage(picMap.get(hand));
-	winLabel.setText(game.getWinner());
+        Hand hand;
+        RockScissorsPaper game = new RockScissorsPaper();
+        if (event.getSource() == rockBtn) {
+            hand = Hand.ROCK;
+        } else if (event.getSource() == paperBtn) {
+            hand = Hand.PAPER;
+        } else if (event.getSource() == scissorsBtn) {
+            hand = Hand.SCISSORS;
+        } else {
+            hand = null;
+        }
+        game.play(hand);
+        computerLabel.setText("Computer: " + game.getComputerHand());
+        computerIW.setImage(picMap.get(game.getComputerHand()));
+        playerIW.setImage(picMap.get(hand));
+        winLabel.setText(game.getWinner());
     }
 
 }

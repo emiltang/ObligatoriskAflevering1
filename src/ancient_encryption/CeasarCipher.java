@@ -7,16 +7,14 @@ package ancient_encryption;
 
 public class CeasarCipher extends AbstractCipher {
 
-    private int rotFactor;
-    private char[] rotALPHABETH;
+    private final char[] rotALPHABETH;
 
     public CeasarCipher(int rotFactor) {
-        if (rotFactor > 0 && rotFactor <= ALPHABETH.length) {
-            this.rotFactor = rotFactor;
-        } else {
+        if (!(rotFactor > 0 && rotFactor <= ALPHABETH.length)) {
             throw new IllegalArgumentException("Make sure you are not entering a negative value or value larger than the ALPHABET");
         }
-
+        
+        // Rotate Alphabeth by rotfactor
         rotALPHABETH = ALPHABETH.clone();
         for (int i = 0; i < ALPHABETH.length; i++) {
             rotALPHABETH[(i + rotFactor) % ALPHABETH.length] = ALPHABETH[i];

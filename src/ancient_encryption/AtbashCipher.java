@@ -12,7 +12,7 @@ public class AtbashCipher extends AbstractCipher {
         char[] chars = original.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             if (Character.isLetter(chars[i])) {
-                chars[i] = ALPHABETH[(ALPHABETH.length - 1) - findCharIndex(chars[i],ALPHABETH)];
+                chars[i] = ALPHABETH[(ALPHABETH.length - 1) - findCharIndex(chars[i], ALPHABETH)];
             }
         }
         return new String(chars);
@@ -22,5 +22,4 @@ public class AtbashCipher extends AbstractCipher {
     public String decrypt(String encrypted) {
         return encrypt(encrypted);
     }
-
 }
