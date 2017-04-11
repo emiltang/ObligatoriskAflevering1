@@ -67,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label winLabel;
 
-    private CipherInterface cipher;
+    // private CipherInterface cipher;
     private Map<Hand, Image> picMap = new HashMap<>();
 
     @Override
@@ -75,7 +75,7 @@ public class FXMLDocumentController implements Initializable {
         picMap.put(Hand.ROCK, new Image(new File("Rock.png").toURI().toString()));
         picMap.put(Hand.SCISSORS, new Image(new File("Scissors.png").toURI().toString()));
         picMap.put(Hand.PAPER, new Image(new File("Paper.png").toURI().toString()));
-        
+
         rotSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(
                 0,
                 CipherInterface.ALPHABETH.length - 1,
@@ -84,24 +84,45 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void encryptText(ActionEvent event) {
-        encryptTF.setText(cipher.encrypt(inputTF.getText()));
-    }
+    private void encryptDecrypt(ActionEvent event) {
+        CipherInterface cipher = null;
 
-    @FXML
-    private void decryptText(ActionEvent event) {
-        decryptTF.setText(cipher.decrypt(encryptTF.getText()));
-    }
+        System.out.println(cipherGroup.getSelectedToggle());
 
-    @FXML
-    private void selectCipher(ActionEvent event) {
         if (cipherGroup.getSelectedToggle() == atbshRB) {
             cipher = new AtbashCipher();
         } else if (cipherGroup.getSelectedToggle() == ceasarRB) {
             cipher = new CeasarCipher(rotSpinner.getValue());
         }
+        System.out.println(event.getSource());
+        if (event.getSource() == encryptBtn) {
+            encryptTF.setText(cipher.encrypt(inputTF.getText()));
+        } else if (event.getSource() == decryptBtn) {
+            decryptTF.setText(cipher.decrypt(encryptTF.getText()));
+        }
     }
 
+//    // old not used
+//    @FXML
+//    private void encryptText(ActionEvent event) {
+//        encryptTF.setText(cipher.encrypt(inputTF.getText()));
+//    }
+//
+//    // old not used
+//    @FXML
+//    private void decryptText(ActionEvent event) {
+//        decryptTF.setText(cipher.decrypt(encryptTF.getText()));
+//    }
+//
+//    // old not used
+//    @FXML
+//    private void selectCipher(ActionEvent event) {
+//        if (cipherGroup.getSelectedToggle() == atbshRB) {
+//            cipher = new AtbashCipher();
+//        } else if (cipherGroup.getSelectedToggle() == ceasarRB) {
+//            cipher = new CeasarCipher(rotSpinner.getValue());
+//        }
+//    }
     @FXML
     private void rockPaperScissor(ActionEvent event) {
         Hand hand;

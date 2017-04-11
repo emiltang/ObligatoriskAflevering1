@@ -13,7 +13,7 @@ public class CeasarCipher extends AbstractCipher {
         if (!(rotFactor > 0 && rotFactor <= ALPHABETH.length)) {
             throw new IllegalArgumentException("Make sure you are not entering a negative value or value larger than the ALPHABET");
         }
-        
+
         // Rotate Alphabeth by rotfactor
         rotALPHABETH = ALPHABETH.clone();
         for (int i = 0; i < ALPHABETH.length; i++) {

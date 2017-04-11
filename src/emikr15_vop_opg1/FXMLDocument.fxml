@@ -24,25 +24,25 @@
                         <TextField fx:id="inputTF" />
                      </graphic>
                   </Label>
-                  <RadioButton fx:id="atbshRB" mnemonicParsing="false" onAction="#selectCipher" text="Atbash">
+                  <RadioButton fx:id="atbshRB" mnemonicParsing="false" text="Atbash">
                      <toggleGroup>
                         <ToggleGroup fx:id="cipherGroup" />
                      </toggleGroup></RadioButton>
-                  <RadioButton fx:id="ceasarRB" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#selectCipher" text="Ceasar" toggleGroup="$cipherGroup">
+                  <RadioButton fx:id="ceasarRB" contentDisplay="RIGHT" mnemonicParsing="false" text="Ceasar" toggleGroup="$cipherGroup">
                      <graphic>
                         <Spinner fx:id="rotSpinner" />
                      </graphic>
                   </RadioButton>
                   <ButtonBar nodeOrientation="LEFT_TO_RIGHT">
                     <buttons>
-                        <Button fx:id="encryptBtn" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#encryptText" text="Encrypt" />
-                        <TextField fx:id="encryptTF" editable="false" />
+                        <Button fx:id="encryptBtn" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#encryptDecrypt" text="Encrypt" />
+                        <TextField fx:id="encryptTF" editable="false" onAction="#encryptDecrypt" />
                     </buttons>
                   </ButtonBar>
                   <ButtonBar>
                     <buttons>
-                      <Button fx:id="decryptBtn" mnemonicParsing="false" onAction="#decryptText" text="Decrypt" />
-                        <TextField fx:id="decryptTF" editable="false" />
+                      <Button fx:id="decryptBtn" mnemonicParsing="false" onAction="#encryptDecrypt" text="Decrypt" />
+                        <TextField fx:id="decryptTF" editable="false" onAction="#encryptDecrypt" />
                     </buttons>
                   </ButtonBar>
                </children>
